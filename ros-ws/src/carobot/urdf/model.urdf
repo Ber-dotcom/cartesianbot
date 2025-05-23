@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="CartesianRobot">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.001 0.01 0.16"
+        rpy="0 0 0" />
+      <mass
+        value="8.22" />
+	  <inertia
+        ixx="0.30471576885987"
+        ixy="0.010467275298787"
+        ixz="-0.0119696542324205"
+        iyy="0.372411485126987"
+        iyz="-0.00525325844755414"
+        izz="0.299819303764689" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.49 0.49 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="prismatic_0">
+    <inertial>
+      <origin
+        xyz="-0.069 0.045 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.398" />
+	  <inertia
+        ixx="0.30471576885987"
+        ixy="0.010467275298787"
+        ixz="-0.0119696542324205"
+        iyy="0.372411485126987"
+        iyz="-0.00525325844755414"
+        izz="0.299819303764689" />
+    </inertial>
+    <visual>
+      <origin
+      	xyz="-0.3035 -0.3215 -0.03"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/X.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.40 0.12 0.12 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+      	xyz="-0.3035 -0.3215 -0.03"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/X.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prismatic_0_joint"
+    type="prismatic">
+    <origin
+      xyz="0.1135 0 0.3215"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="prismatic_0" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.104"
+      upper="0.09"
+      effort="5e3"
+      velocity="20" />
+    <dynamics
+      damping="0.01"
+      friction="0.1" />
+  </joint>
+  <transmission name="trans_prismatic_0_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="prismatic_0_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_prismatic_0_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	  <mechanicalReduction>8</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="prismatic_1">
+    <inertial>
+      <origin
+        xyz="0.02 0.015 0.012"
+        rpy="0 0 0" />
+      <mass
+		value="0.08073" />
+      <inertia
+        ixx="0.30471576885987"
+        ixy="0.010467275298787"
+        ixz="-0.0119696542324205"
+        iyy="0.372411485126987"
+        iyz="-0.00525325844755414"
+        izz="0.299819303764689" />
+    </inertial>
+    <visual>
+      <origin
+      	xyz="-0.018 -0.3581 -0.0225"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Z.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+		  rgba="0.22 0.49 0.22 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+      	xyz="-0.018 -0.3581 -0.0225"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Z.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prismatic_1_joint"
+    type="prismatic">
+    <origin
+      xyz="-0.1628 0.0365 0.0005"
+      rpy="0 0 0" />
+    <parent
+      link="prismatic_0" />
+    <child
+      link="prismatic_1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.0865"
+      upper="0.0865"
+      effort="5e3"
+      velocity="20" />
+    <dynamics
+      damping="0.01"
+      friction="0.1" />
+  </joint>
+  <transmission name="trans_prismatic_1_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="prismatic_1_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_prismatic_1_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>8</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="prismatic_2">
+    <inertial>
+      <origin
+        xyz="-0.015 0.055 0.00"
+        rpy="0 0 0" />
+      <mass
+		value=".030612" />
+      <inertia
+        ixx="0.30471576885987"
+        ixy="0.0104672752987869"
+        ixz="-0.0119696542324205"
+        iyy="0.372411485126987"
+        iyz="-0.00525325844755413"
+        izz="0.299819303764689" />
+    </inertial>
+    <visual>
+      <origin
+      	xyz="-0.05 -0.419 -0.0485"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Y.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+		  rgba="0.22 0.22 0.43 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+      	xyz="-0.05 -0.419 -0.0485"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find carobot)/urdf/meshes/Y.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prismatic_2_joint"
+    type="prismatic">
+    <origin
+      xyz="0.037 0.0345 0.026"
+      rpy="0 0 0" />
+    <parent
+      link="prismatic_1" />
+    <child
+      link="prismatic_2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-0.0889"
+      upper="0.0889"
+      effort="5e3"
+      velocity="20" />
+    <dynamics
+      damping="0.01"
+      friction="0.1" />
+  </joint>
+  <transmission name="trans_prismatic_2_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="prismatic_2_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_prismatic_2_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>8</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <gazebo>
+	  <plugin
+		  filename="gz-sim-joint-state-publisher-system"
+		  name="gz::sim::systems::JointStatePublisher">
+		  <joint_name>prismatic_0_joint</joint_name>
+		  <topic>yoba/carobot/joint_0/state</topic>
+	  </plugin>
+	  <plugin
+		  filename="gz-sim-joint-state-publisher-system"
+		  name="gz::sim::systems::JointStatePublisher">
+		  <joint_name>prismatic_1_joint</joint_name>
+		  <topic>yoba/carobot/joint_1/state</topic>
+	  </plugin>
+	  <plugin
+		  filename="gz-sim-joint-state-publisher-system"
+		  name="gz::sim::systems::JointStatePublisher">
+		  <joint_name>prismatic_2_joint</joint_name>
+		  <topic>yoba/carobot/joint_2/state</topic>
+	  </plugin>
+  	  <plugin
+		filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>prismatic_0_joint</joint_name>
+		<topic>yoba/carobot/joint_0/cmd_pos</topic>
+		<p_gain>68.21</p_gain>
+        <i_gain>0.56</i_gain>
+        <d_gain>34.14</d_gain>
+	  </plugin>
+  	  <plugin
+        filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>prismatic_1_joint</joint_name>
+		<topic>yoba/carobot/joint_1/cmd_pos</topic>
+		<p_gain>68.21</p_gain>
+        <i_gain>0.56</i_gain>
+        <d_gain>34.14</d_gain>
+	  </plugin>
+  	  <plugin
+        filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>prismatic_2_joint</joint_name>
+		<topic>yoba/carobot/joint_2/cmd_pos</topic>
+		<p_gain>68.21</p_gain>
+        <i_gain>0.56</i_gain>
+        <d_gain>34.14</d_gain>
+	  </plugin>
+  </gazebo>
+</robot>
