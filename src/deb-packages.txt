@@ -1,0 +1,7 @@
+python3-pip
+ros-build-essential
+ros-dev-tools
+ros-ROS_DIST-desktop
+ros-ROS_DIST-urdf-launch
+ros-ROS_DIST-ros-gz-sim
+ros-ROS_DIST-ros-gz-bridge
